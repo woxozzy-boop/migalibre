@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>MIGA LIBRE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --teal: #008080;
+      --amber: #ffbf00;
+      --bg: #f7f7f7;
+      --text: #333;
+      --light: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--teal);
+      color: #fff;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.2rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #e0f4f4);
+      border-radius: 1rem;
+      padding: 2rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--teal);
+    }
+
+    .hero p {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--amber);
+      color: #000;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-image {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .hero-image-placeholder {
+      width: 50%;
+      height: 180px;
+      border-radius: 0.75rem;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffe9a6,
+        #ffe9a6 10px,
+        #fff5cc 10px,
+        #fff5cc 20px
+      );
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-image p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Secciones */
+    h3.section-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--teal);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      color: #555;
+    }
+
+    /* Productos destacados / catálogo */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 0.9rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 0.6rem;
+      background: linear-gradient(135deg, #ffe9a6, #ffd36b);
+      margin-bottom: 0.6rem;
+      overflow: hidden;
+    }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-category {
+      font-size: 0.8rem;
+      color: #777;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .link-small {
+      font-size: 0.8rem;
+      color: var(--teal);
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    /* Filtros y buscador */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .filters select,
+    .filters input {
+      padding: 0.4rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* Beneficios */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .benefit-card {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 0.9rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .benefit-card h4 {
+      margin-bottom: 0.35rem;
+      color: var(--teal);
+      font-size: 1rem;
+    }
+
+    .benefit-card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Testimonios */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .testimonial {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 0.9rem;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .testimonial span {
+      display: block;
+      margin-top: 0.4rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    /* Carrito */
+    .cart-items {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      margin-bottom: 1rem;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr 0.8fr 0.5fr;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.9rem;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item input {
+      width: 60px;
+      padding: 0.2rem;
+    }
+
+    .cart-summary {
+      text-align: right;
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+
+    .cart-summary strong {
+      font-size: 1.05rem;
+      color: var(--teal);
+    }
+
+    /* Checkout */
+    form.checkout-form {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.4rem;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+    }
+
+    .form-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    /* Confirmación */
+    .confirmation-box {
+      background: #fff;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .confirmation-box h4 {
+      margin-bottom: 0.5rem;
+      color: var(--teal);
+    }
+
+    .confirmation-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Modal producto */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 0.75rem;
+      max-width: 500px;
+      width: 90%;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-header h4 {
+      color: var(--teal);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .modal-section-title {
+      font-weight: 600;
+      margin-top: 0.5rem;
+      margin-bottom: 0.15rem;
+      font-size: 0.9rem;
+    }
+
+    .modal p {
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .modal .product-price {
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-qty {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    .modal-qty input {
+      width: 70px;
+      padding: 0.25rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MIGA LIBRE</h1>
+    <nav>
+      <a href="#home">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#carrito">Carrito (<span id="cart-count">0</span>)</a>
+      <a href="#checkout">Pago</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="home">
+      <div class="hero">
+        <div>
+          <span class="hero-badge">100% Sin Gluten · Obrador Seguro</span>
+          <h2>Pastelería sin gluten artesanal</h2>
+          <p>
+            Delicias frescas, seguras y llenas de sabor. Elaboradas a diario en un obrador libre de contaminación cruzada,
+            con ingredientes naturales y mucho mimo.
+          </p>
+          <p>
+            Tartas, panes, galletas y bollería sin gluten para que disfrutes sin preocupaciones.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="scrollToSection('catalogo')">Ver catálogo</button>
+            <button class="btn btn-secondary" onclick="addFeaturedToCart()">Añadir producto destacado</button>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img class="product-image" src="img/logo.jpeg" alt="Tarta sin gluten" />
+</div>
+          <p>Imagina aquí tus mejores tartas, panes y dulces sin gluten listos para tus clientes.</p>
+        </div>
+      </div>
+
+      <section style="margin-top:2rem;">
+        <h3 class="section-title">Beneficios de nuestra pastelería</h3>
+        <p class="section-subtitle">Calidad, seguridad y sabor en cada bocado.</p>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <h4>100% Sin Gluten</h4>
+            <p>Todos nuestros productos se elaboran en un obrador libre de gluten y de contaminación cruzada.</p>
+          </div>
+          <div class="benefit-card">
+            <h4>Ingredientes Naturales</h4>
+            <p>Seleccionamos materias primas de alta calidad para ofrecer un sabor auténtico y una textura deliciosa.</p>
+          </div>
+          <div class="benefit-card">
+            <h4>Envíos Rápidos</h4>
+            <p>Preparamos y enviamos tu pedido para que llegue fresco y en perfectas condiciones.</p>
+          </div>
+          <div class="benefit-card">
+            <h4>Elaboración Artesanal</h4>
+            <p>Cada pieza se hace a mano, con dedicación y pasión por la pastelería sin gluten.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:2rem;">
+        <h3 class="section-title">Lo que dicen nuestros clientes</h3>
+        <div class="testimonials">
+          <div class="testimonial">
+            “El mejor pan sin gluten que he probado. Sabe a pan de verdad.”
+            <span>Laura M.</span>
+          </div>
+          <div class="testimonial">
+            “Las tartas son espectaculares. Mi hija celíaca por fin puede disfrutar sin miedo.”
+            <span>Marta M.</span>
+          </div>
+          <div class="testimonial">
+            “Entrega rápida y productos fresquísimos. Repetiré sin duda.”
+            <span>Carlos R.</span>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section id="catalogo">
+      <h3 class="section-title">Catálogo sin gluten</h3>
+      <p class="section-subtitle">
+        Explora nuestras delicias artesanales: panes, bollería, tartas y Tradicional sin gluten. Usa los filtros o el buscador
+        para encontrar lo que buscas.
+      </p>
+
+      <div class="filters">
+        <label for="filter-category" style="font-size:0.9rem;">Categoría:</label>
+        <select id="filter-category" onchange="renderProducts()">
+          <option value="all">Todas</option>
+          <option value="Pan">Pan</option>
+          <option value="Bollería">Bollería</option>
+          <option value="Tartas">Tartas</option>
+          <option value="Tradicional">Tradicional</option>
+        </select>
+
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar producto..."
+          oninput="renderProducts()"
+        />
+      </div>
+
+      <div class="products-grid" id="products-grid"></div>
+    </section>
+
+    <!-- CARRITO -->
+    <section id="carrito">
+      <h3 class="section-title">Tu carrito</h3>
+      <p class="section-subtitle">
+        Revisa los productos que has añadido. Puedes modificar cantidades, eliminar artículos o continuar comprando.
+      </p>
+
+      <div id="cart-container"></div>
+    </section>
+
+    <!-- CHECKOUT -->
+    <section id="checkout">
+      <h3 class="section-title">Finalizar compra</h3>
+      <p class="section-subtitle">
+        Completa tus datos para procesar tu pedido de forma segura. Todos los envíos se preparan con cuidado para que
+        recibas tus productos frescos y en perfectas condiciones.
+      </p>
+
+      <form class="checkout-form" onsubmit="submitOrder(event)">
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="name">Nombre y apellidos</label>
+            <input id="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input id="email" type="email" required />
+          </div>
+        </div>
+
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="phone">Teléfono</label>
+            <input id="phone" required />
+          </div>
+          <div class="form-group">
+            <label for="city">Ciudad</label>
+            <input id="city" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Dirección completa</label>
+          <textarea id="address" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="shipping">Método de envío</label>
+          <select id="shipping" required>
+            <option value="estandar">Estándar (Gratis) · 48–72 h</option>
+            <option value="express">Express · 24–48 h</option>
+            <option value="premium">Premium mismo día (según zona)</option>
+          </select>
+        </div>
+
+        <div class="cart-summary" id="checkout-summary">
+          <!-- Se rellena por JS -->
+        </div>
+
+        <button class="btn btn-primary" type="submit">Confirmar pedido</button>
+      </form>
+    </section>
+
+    <!-- CONFIRMACIÓN -->
+    <section id="confirmacion" style="display:none;">
+      <h3 class="section-title">¡Gracias por tu compra!</h3>
+      <div class="confirmation-box" id="confirmation-box">
+        <!-- Se rellena por JS -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Pastelería Sin Gluten · tienda online
+  </footer>
+
+  <!-- MODAL DETALLE PRODUCTO -->
+  <div class="modal-backdrop" id="product-modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h4 id="modal-product-name"></h4>
+        <button class="modal-close" onclick="closeProductModal()">&times;</button>
+      </div>
+      <p class="product-category" id="modal-product-category"></p>
+      <p class="product-price" id="modal-product-price"></p>
+
+      <p id="modal-product-description"></p>
+
+      <p class="modal-section-title">Ingredientes</p>
+      <p id="modal-product-ingredients"></p>
+
+      <p class="modal-section-title">Alérgenos</p>
+      <p id="modal-product-allergens"></p>
+
+      <p class="modal-section-title">Peso</p>
+      <p id="modal-product-weight"></p>
+      <div class="modal-qty">
+        <label for="modal-qty-input">Cantidad:</label>
+        <input type="number" id="modal-qty-input" min="1" value="1" />
+      </div>
+
+      <button class="btn btn-primary" onclick="addModalProductToCart()">Añadir al carrito</button>
+    </div>
+  </div>
+
+  <script>
+    // Datos de productos (12 productos sin gluten)
+    const products = [
+      {
+        id: 1,
+        img: "<img src=img/hogaza.jpeg>",
+        name: "Hogaza",
+        category: "Pan",
+        price: 2.65,
+        ingredients:
+          "Harina Mix Sin gluten,psyllium,agua,levadura fresca y sal.",
+        allergens: "Libre de alergenos.",
+        weight: "500 g aprox.",
+        
+      },
+      {
+        id: 2,
+        img: "<img src=img/panmolde.jpeg>",
+        name: "Pan de molde",
+        category: "Pan",
+        price: 2.7,
+        ingredients:
+          "Harina Mix Sin Gluten,levadura fresca,mantequilla,huevos,agua y sal.",
+        allergens: "Lácteos y huevos.",
+        weight: "100 g aprox.",
+        
+      },
+      {
+        id: 3,
+        img: "<img src=img/baguette.jpeg>",
+        name: "Baguette",
+        category: "Pan",
+        price: 1.2,
+        ingredients:
+          "Harina de arroz, almidón de maíz, huevo, azúcar, aceite de girasol, levadura, sal.",
+        allergens: "Libre de alérgenos.",
+        weight: "150 aprox.",
+        
+      },
+      {
+        id: 4,
+        img: "<img src=img/chapata.jpeg>",
+        name: "Chapata",
+        category: "Pan",
+        price: 1.25,
+        ingredients:
+          "Harina Mix Sin Gluten,agua,levadura fresca,miel,sal y AOVE.",
+        allergens: "Libre de alérgenos.",
+        weight: "100 g aprox.",
+        
+      },
+      {
+        id: 5,
+        img: "<img src=img/tartasacher.jpeg>",
+        name: "Tarta sacher",
+        category: "Tartas",
+        price: 2.55,
+        ingredients:
+          "Cobertura chocolate negro,mantequilla,azúcar glass,huevos, azúcar,harina Mix Sin Gluten,sal,mermelada de fresa y agua.",
+        allergens: "Huevo y Lácteos.",
+        weight: "Porcion",
+        
+      },
+      {
+        id: 6,
+        img: "<img src=img/tartamanzana.jpeg>",
+        name: "Tarta de manzana",
+        category: "Tartas",
+        price: 1.4,
+        ingredients:
+          "Huevos,leche,azúcar, miel,levadura fresca,harina Mix Sin Gluten,mantequilla y manzanas golden.",
+        allergens: "Huevo y lácteos.",
+        weight: "Porción",
+        
+      },
+      {
+        id: 7,
+        img: "<img src=img/tartaqueso.jpeg>",
+        name: "Tarta de queso",
+        category: "Tartas",
+        price: 1.3,
+        ingredients:
+          "Queso freco,azúcar,maicena,leche,huevos y mantequilla.",
+        allergens: "Huevos y lácteos.",
+        weight: "Porción",
+        
+      },
+      {
+        id: 8,
+        img: "<img src=img/tartazanahoria.jpeg>",
+        name: "Tarta de zanahoria",
+        category: "Tartas",
+        price: 4.55,
+        ingredients:
+          "Harina Mix Sin Gluten,zanahorias,nueces,huevos,azúcar moreno,AOVE,canela en polvo,sal,nuez moscasda,queso crema,mantequilla y azúcar glass.",
+        allergens: "Huevos y lácteos.",
+        weight: "Porción",
+        
+      },
+      {
+        id: 9,
+        img: "<img src=img/tartared.jpeg>",
+        name: "Tarta red velvet",
+        category: "Tartas",
+        price: 5.10,
+        ingredients:"Harina Mix Sin Gluten,mantequilla,azúcar,huevos,cacao en polvo,impulsor,sal,leche,colorante rojo,esencia de vainilla,queso crema y azúcar glass.",
+        allergens: "Lácteos y huevos.",
+        weight: "Porción",
+        
+      },
+      {
+        id: 10,
+        img: "<img src=img/lemonpie.jpeg>",
+        name: "Lemon pie",
+        category: "Tartas",
+        price: 2.5,
+        ingredients:"Azúcar,mantequilla,harina Mix Sin Gluten,huevos,sal,esencia vainilla,zumo limón,azúcar glass y claras de huevos pasteurizadas.",
+        allergens: "Lácteos y huevos.",
+        weight: "Porción",
+        
+      },
+      {
+        id: 11,
+        img: "<img src=img/pestiño.jpeg>",
+        name: "Pestiño",
+        category: "Tradicional",
+        price: 1.25,
+        ingredients:"Vino blanco verdejo,AOVE,zumo naranja,azúcar,sal,almendras,matalahuva,harina Mix Sin Gluten,miel y agua.",
+        allergens: "Sulfitos y frutos de cáscara.",
+        
+      },
+      {
+        id: 12,
+        img: "<img src=img/arrozleche.jpeg>",
+        name: "Arroz con leche",
+        category: "Tradicional",
+        price: 1.55,
+        ingredients:"Leche,leche coco,arroz redondo,anís estrellado,canela rama y canela polvo.",
+        allergens: "Lácteos.",
+    
+      },
+      {
+        id: 13,
+        img: "<img src=img/polvoron.jpeg>",
+        name: "Polvorones",
+        category: "Tradicional",
+        price: 3.30,
+        ingredients: "Harina Mix Sin Gluten,almendras,huevo,yemas huevo pasteurizadas,azúcar glass,manteca cerdo y canela polvo.",
+        allergens: "Frutos cáscara y huevo.",
+        
+      },
+      {
+        id: 14,
+        img: "<img src=img/llemastajo.jpeg>",
+        name: "Yemas del tajo",
+        category: "Tradicional",
+        price: 0.50,
+        ingredients: "Yemas huevo pasteurizadas,agua,azúcar y azúcar glass.",
+        allergens: "Huevo.",
+        
+      },
+      {
+        id: 15,
+        img: "<img src=img/lechefrita.jpeg>",
+        name: "Leche frita",
+        category: "Tradicional",
+        price: 0.8,
+        ingredients:"Leche,azúcar,maicena,yemas huevo pasteurizadas,canela rama,huevo,aceite girasol y canela polvo.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 16,
+        img: "<img src=img/natilla.jpeg>",
+        name: "Natilla",
+        category: "Tradicional",
+        price: 1.30,
+        ingredients:"Leche,canela rama,yemas huevos pasteurizadas, maicena,azúcar,galletas Sin Gluten y canela polvo.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 17,
+        img: "<img src=img/magdalena2.jpeg>",
+        name: "Magdalena clásica",
+        category: "Bollería",
+        price: 1.30,
+        ingredients:"Huevos,azúcar,AOVE,leche,harina Mix Sin Gluten e impulsor.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 18,
+        img: "<img src=img/magdalena.jpeg>",
+        name: "Magdalena chocolate",
+        category: "Bollería",
+        price: 1.65,
+        ingredients:"Huevos,azúcar,AOVE,leche,harina Mix Sin Gluten,impulsor y cobertura chocolate negro.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 19,
+        img: "<img src=img/drownie2.jpeg>",
+        name: "Brownie chocolate",
+        category: "Bollería",
+        price: 2.40,
+        ingredients:"Mantequilla,azúcar,huevos,cacao polvo,harina Mix SIn Gluten,impulsor y cobertura chocolate negro.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 20,
+        img: "<img src=img/brownie.jpeg>",
+        name: "Brownie chocolate y frutos secos",
+        category: "Bollería",
+        price: 3.50,
+        ingredients:"Mantequilla,azúcar,huevos,cacao polvo,harina Mix Sin Gluten,impulsor,cobertura chocolate negro y mix frutos secos.",
+        allergens: "Lácteos,huevo y frutos cáscara.",
+        
+      },
+      {
+        id: 21,
+        img: "<img src=img/caña2.jpeg>",
+        name: "Caña rellena chocolate",
+        category: "Bollería",
+        price: 3.00,
+        ingredients:"Harina Mix Sin Gluten,sal,agua,yemas huevo pasteurizadas,mantequilla,leche,maicena,azúcar,esencia vainilla,canela rama y cobertura chocolate negro.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 22,
+        img: "<img src=img/Caña.jpeg>",
+        name: "Caña rellena crema pastelera",
+        category: "Bollería",
+        price: 2.10,
+        ingredients:"Harina Mix Sin Gluten,sal,agua,yemas huevos pasteurizadas,mantequilla,leche,maicena,azúcar,esencia vainilla y huevos.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 23,
+        img: "<img src=img/croissant2.jpeg>",
+        name: "Croissant clásico",
+        category: "Bollería",
+        price: 1.50,
+        ingredients:"Harina Mix Sin Gluten,sal,agua,yemas huevo pasteurizadas y mantequilla.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 24,
+        img: "<img src=img/galletas2.jpeg>",
+        name: "Galletas con pepitas chocolate",
+        category: "Bollería",
+        price: 1.80,
+        ingredients:"Harina Mix Sin Gluten,azúcar,mantequilla,huevos,pepitas chocolate e impulsor.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 25,
+        img: "<img src=img/groissant.jpeg>",
+        name: "Croissant relleno chocolate o crema pastelera",
+        category: "Bollería",
+        price: 3.00,
+        ingredients:"Harina Mix Sin Gluten,sal,agua,yemas huevo pasteurizadas,mantequilla,leche,maicena,azúcar,esencia vainilla,canela rama y cobertura chocolate negro.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 26,
+        img: "<img src=img/galletas.jpeg>",
+        name: "Galletas rellenas crema frutos secos o pistachos",
+        category: "Bollería",
+        price: 3.00,
+        ingredients:"Harina Mix Sin Gluten,azúcar,mantequilla,huevos,pepitas chocolate,impulsor,pistachos pelados,cobertura chocolate blanco/mix frutos secos y AOVE.",
+        allergens: "Lácteos,huevo y frutos cascaras.",
+        
+      },
+      {
+        id: 27,
+        img: "<img src=img/palcho.jpeg>",
+        name: "Palmerita chocolate",
+        category: "Bollería",
+        price: 2.15,
+        ingredients:"Harina Mix Sin Gluten,mantequilla,agua,yemas huevo pasteurizadas y cobertura chocolate negro.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+      {
+        id: 28,
+        img: "<img src=img/palhue.jpeg>",
+        name: "Palmerita huevo",
+        category: "Bollería",
+        price: 2.10,
+        ingredients:"Harina Mix Sin Gluten,mantequilla,agua,yemas huevo pasteurizadas,sal,azúcar y azúcar glass.",
+        allergens: "Lácteos y huevo.",
+        
+      },
+    
+    ];
+
+    let cart = [];
+    let currentModalProduct = null;
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("products-grid");
+      const category = document.getElementById("filter-category").value;
+      const search = document.getElementById("search-input").value.toLowerCase();
+
+      grid.innerHTML = "";
+
+      const filtered = products.filter((p) => {
+        const matchCategory = category === "all" || p.category === category;
+        const matchSearch =
+          p.name.toLowerCase().includes(search) ||
+          p.description.toLowerCase().includes(search);
+        return matchCategory && matchSearch;
+      });
+
+      filtered.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div>
+            <div class="product-image">${p.img}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-category">${p.category}</div>
+            <div class="product-price">${p.price.toFixed(2)} €</div>
+          </div>
+          <div class="product-actions">
+            <button class="btn btn-primary" onclick="addToCart(${p.id})">Añadir</button>
+            <button class="link-small" onclick="openProductModal(${p.id})">Ver detalles</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "<p>No se han encontrado productos.</p>";
+      }
+    }
+
+    function addToCart(productId, quantity = 1) {
+      const product = products.find((p) => p.id === productId);
+      if (!product) return;
+
+      const existing = cart.find((item) => item.id === productId);
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        cart.push({ ...product, quantity });
+      }
+      updateCartCount();
+      renderCart();
+      updateCheckoutSummary();
+    }
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cart-count").textContent = count;
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cart-container");
+      container.innerHTML = "";
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p>Tu carrito está vacío.</p>";
+        return;
+      }
+
+      const itemsDiv = document.createElement("div");
+      itemsDiv.className = "cart-items";
+
+      const header = document.createElement("div");
+      header.className = "cart-item";
+      header.style.fontWeight = "600";
+      header.innerHTML = `
+        <div>Producto</div>
+        <div>Precio</div>
+        <div>Cantidad</div>
+        <div></div>
+      `;
+      itemsDiv.appendChild(header);
+
+      cart.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div>${item.name}</div>
+          <div>${item.price.toFixed(2)} €</div>
+          <div>
+            <input type="number" min="1" value="${item.quantity}" onchange="changeCartQuantity(${item.id}, this.value)" />
+          </div>
+          <div>
+            <button class="link-small" onclick="removeFromCart(${item.id})">Eliminar</button>
+          </div>
+        `;
+        itemsDiv.appendChild(row);
+      });
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const summary = document.createElement("div");
+      summary.className = "cart-summary";
+      summary.innerHTML = `
+        Subtotal: ${total.toFixed(2)} €<br/>
+        <strong>Total: ${total.toFixed(2)} €</strong>
+      `;
+
+      container.appendChild(itemsDiv);
+      container.appendChild(summary);
+    }
+
+    function changeCartQuantity(productId, value) {
+      const qty = parseInt(value, 10);
+      if (isNaN(qty) || qty <= 0) return;
+      const item = cart.find((i) => i.id === productId);
+      if (!item) return;
+      item.quantity = qty;
+      updateCartCount();
+      renderCart();
+      updateCheckoutSummary();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter((i) => i.id !== productId);
+      updateCartCount();
+      renderCart();
+      updateCheckoutSummary();
+    }
+
+    function updateCheckoutSummary() {
+      const summary = document.getElementById("checkout-summary");
+      if (cart.length === 0) {
+        summary.innerHTML = "Tu carrito está vacío. Añade productos antes de finalizar la compra.";
+        return;
+      }
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      summary.innerHTML = `
+        <div><strong>Resumen del pedido</strong></div>
+        <div>Artículos: ${cart.reduce((sum, i) => sum + i.quantity, 0)}</div>
+        <div>Subtotal: ${subtotal.toFixed(2)} €</div>
+        <div>Gastos de envío: se calculan según el método elegido.</div>
+      `;
+    }
+
+    function submitOrder(event) {
+      event.preventDefault();
+      if (cart.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const shipping = document.getElementById("shipping").value;
+
+      if (!name || !email || !phone || !city || !address || !shipping) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+
+      const orderNumber = "GLUT-" + Math.floor(Math.random() * 900000 + 100000);
+      const shippingText =
+        shipping === "estandar"
+          ? "Estándar (Gratis) · 48–72 h"
+          : shipping === "express"
+          ? "Express · 24–48 h"
+          : "Premium mismo día (según zona)";
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      const confirmationBox = document.getElementById("confirmation-box");
+      confirmationBox.innerHTML = `
+        <h4>Pedido recibido correctamente</h4>
+        <p><strong>Número de pedido:</strong> ${orderNumber}</p>
+        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Correo:</strong> ${email}</p>
+        <p><strong>Teléfono:</strong> ${phone}</p>
+        <p><strong>Dirección de envío:</strong> ${address}, ${city}</p>
+        <p><strong>Método de envío:</strong> ${shippingText}</p>
+        <p><strong>Importe total:</strong> ${total.toFixed(2)} €</p>
+        <hr style="margin:0.75rem 0;" />
+        <p><strong>Resumen de productos:</strong></p>
+        <ul style="margin-left:1rem; font-size:0.9rem;">
+          ${cart
+            .map(
+              (item) =>
+                `<li>${item.quantity} × ${item.name} (${item.price.toFixed(2)} €)</li>`
+            )
+            .join("")}
+        </ul>
+        <p style="margin-top:0.75rem;">
+          Te hemos enviado un correo con los detalles de tu pedido. Comenzaremos a prepararlo en nuestro obrador sin gluten.
+        </p>
+      `;
+
+      document.getElementById("confirmacion").style.display = "block";
+      scrollToSection("confirmacion");
+
+      // Vaciar carrito
+      cart = [];
+      updateCartCount();
+      renderCart();
+      updateCheckoutSummary();
+
+      // Reset formulario
+      event.target.reset();
+    }
+
+    // Modal producto
+    function openProductModal(productId) {
+      const product = products.find((p) => p.id === productId);
+      if (!product) return;
+      currentModalProduct = product;
+
+      document.getElementById("modal-product-name").textContent = product.name;
+      document.getElementById("modal-product-category").textContent = product.category;
+      document.getElementById("modal-product-price").textContent =
+        product.price.toFixed(2) + " €";
+      document.getElementById("modal-product-description").textContent =
+        product.description;
+      document.getElementById("modal-product-ingredients").textContent =
+        product.ingredients;
+      document.getElementById("modal-product-allergens").textContent =
+        product.allergens;
+      document.getElementById("modal-product-weight").textContent = product.weight;
+      
+      document.getElementById("modal-qty-input").value = 1;
+
+      document.getElementById("product-modal-backdrop").style.display = "flex";
+    }
+
+    function closeProductModal() {
+      document.getElementById("product-modal-backdrop").style.display = "none";
+      currentModalProduct = null;
+    }
+
+    function addModalProductToCart() {
+      if (!currentModalProduct) return;
+      const qty = parseInt(
+        document.getElementById("modal-qty-input").value,
+        10
+      );
+      if (isNaN(qty) || qty <= 0) return;
+      addToCart(currentModalProduct.id, qty);
+      closeProductModal();
+    }
+
+    function addFeaturedToCart() {
+      // Añadimos el primer producto como ejemplo de destacado
+      addToCart(products[0].id);
+      scrollToSection("carrito");
+    }
+
+    // Inicialización
+    renderProducts();
+    renderCart();
+    updateCheckoutSummary();
+  </script>
+</body>
+</html>
+
